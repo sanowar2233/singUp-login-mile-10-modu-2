@@ -1,7 +1,8 @@
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, sendEmailVerification } from 'firebase/auth';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { Link } from 'react-router-dom';
 import app from '../firebase/firebase.init';
 
 
@@ -41,6 +42,7 @@ const RegisterReactBootstrape = () => {
             console.log(user)
             setSuccess(true)
             form.reset();
+            veryfiyEmail();
         })
         .catch(error=>{
             console.error('error', error)
@@ -50,6 +52,16 @@ const RegisterReactBootstrape = () => {
       
 
 
+    }
+
+
+
+
+    const veryfiyEmail=()=>{
+        sendEmailVerification(auth.currentUser)
+        .then(()=>{
+            alert('please veryfiy your email');
+        })
     }
 
 
@@ -81,6 +93,8 @@ const RegisterReactBootstrape = () => {
         Register
       </Button>
     </Form>
+
+    <p>Already have an account please login <Link to='/login'>Login</Link></p>
 
             
         </div>
