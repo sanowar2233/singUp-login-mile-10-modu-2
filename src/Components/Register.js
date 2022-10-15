@@ -8,6 +8,7 @@ const Register = () => {
       <input type="password" name='password' placeholder='password' /><br />
 
       <button type='submit'>Register</button>
+      
       </form> */}
         </div>
     );
